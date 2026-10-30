@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="PAC2 de Visualització de dades: gràfic d’àrees, petits múltiples i gràfic de contorns elaborats amb dades obertes.">
+  <title>PAC2 · Visualització de dades</title>
+  <style>
+    :root { color-scheme: light; --ink:#18383e; --accent:#076b73; --muted:#4e6268; --line:#d3dfe2; }
+    * { box-sizing:border-box; }
+    html { scroll-padding-top:20px; }
+    body { margin:0; background:#f3f7f7; color:var(--ink); font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    main { max-width:1160px; margin:auto; padding:34px 24px; }
+    header { margin-bottom:32px; }
+    .eyebrow { color:var(--accent); font-size:13px; font-weight:700; letter-spacing:.10em; text-transform:uppercase; }
+    h1 { margin:8px 0 16px; font-size:clamp(30px,5vw,48px); line-height:1.15; }
+    h2 { margin:0 0 14px; font-size:27px; line-height:1.3; }
+    .intro { max-width:850px; font-size:20px; color:var(--muted); }
+    a { color:var(--accent); text-underline-offset:4px; }
+    a:focus-visible { outline:3px solid #a34500; outline-offset:5px; }
+    nav { display:flex; flex-wrap:wrap; gap:12px 24px; padding:16px 0; border-block:1px solid var(--line); }
+    section { margin:32px 0; padding:26px; background:white; border:1px solid var(--line); border-radius:10px; }
+    .question { font-size:19px; }
+    .source { font-size:14px; color:var(--muted); }
+    .direct { display:inline-block; margin:8px 0 18px; font-weight:650; }
+    iframe { display:block; width:100%; border:1px solid var(--line); border-radius:6px; background:white; }
+    .area { height:710px; }
+    .multiples { height:1070px; }
+    .contours { height:890px; }
+    footer { padding-top:20px; border-top:1px solid var(--line); font-size:14px; color:var(--muted); }
+    @media(max-width:650px) { main { padding:22px 12px; } section { padding:18px 12px; } .intro { font-size:18px; } h2 { font-size:24px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">PAC2 · Visualització de dades</p>
+    <h1>Tres tècniques per explorar les dades</h1>
+    <p class="intro">L’evolució del volum d’aigua de Sau, la comparació de sis embassaments i el relleu de Maunga Whau. Tres visualitzacions interactives creades amb Python i Plotly a partir de dades obertes.</p>
+    <nav aria-label="Anar a les visualitzacions">
+      <a href="#area">1. Gràfic d’àrees</a>
+      <a href="#multiples">2. Petits múltiples</a>
+      <a href="#contorns">3. Gràfic de contorns</a>
+    </nav>
+  </header>
+
+  <section id="area">
+    <p class="eyebrow">Grup I · Area Chart</p>
+    <h2>El volum d’aigua de Sau</h2>
+    <p class="question">Com ha evolucionat el volum d’aigua de Sau entre el 2 de gener de 2023 i el 29 d’octubre de 2026?</p>
+    <p>El gràfic representa el volum embassat diari en hm³. L’àrea omplerta fins a zero reforça la percepció de magnitud i permet seguir els canvis al llarg del temps. No s’han sumat els volums diaris ni s’ha aplicat suavitzat.</p>
+    <a class="direct" href="area.html" target="_blank" rel="noopener">Obrir el gràfic d’àrees en una pàgina pròpia</a>
+    <iframe class="area" src="area.html" title="Gràfic d’àrees del volum d’aigua de Sau" loading="eager"></iframe>
+    <p><strong>Objectiu i audiència:</strong> facilitar la lectura de l’evolució de les reserves a ciutadania interessada en els recursos hídrics. El gràfic mostra canvis observats, sense atribuir-ne les causes.</p>
+    <p class="source">Font: <a href="https://analisi.transparenciacatalunya.cat/d/gn9e-3qhr" target="_blank" rel="noopener">Agència Catalana de l’Aigua · Quantitat d’aigua als embassaments</a>. Dades seleccionades de Sau. L’any 2026 és incomplet.</p>
+  </section>
+
+  <section id="multiples">
+    <p class="eyebrow">Grup II · Small Multiple</p>
+    <h2>Sis embassaments, una mateixa escala</h2>
+    <p class="question">El percentatge d’ompliment dels sis embassaments seleccionats ha evolucionat de la mateixa manera?</p>
+    <p>Cada panell mostra una sèrie diària, del 2 de gener de 2023 al 29 d’octubre de 2026. Es mantenen el mateix període i l’escala vertical de 0 a 110 %. La selecció inclou Sau, Susqueda, la Baells, Darnius Boadella, Riudecanyes i Siurana.</p>
+    <a class="direct" href="petits-multiples.html" target="_blank" rel="noopener">Obrir els petits múltiples en una pàgina pròpia</a>
+    <iframe class="multiples" src="petits-multiples.html" title="Petits múltiples del percentatge d’ompliment de sis embassaments" loading="lazy"></iframe>
+    <p><strong>Objectiu i audiència:</strong> permetre que ciutadania i estudiants comparin patrons temporals entre embassaments amb capacitats diferents. El percentatge compara l’ompliment relatiu, no el volum absolut d’aigua.</p>
+    <p class="source">Font: <a href="https://analisi.transparenciacatalunya.cat/d/gn9e-3qhr" target="_blank" rel="noopener">Agència Catalana de l’Aigua · Quantitat d’aigua als embassaments</a>. Es conserven els percentatges publicats, inclosos els que superen el 100 %. Són sis casos seleccionats; no representen tots els embassaments de Catalunya.</p>
+  </section>
+
+  <section id="contorns">
+    <p class="eyebrow">Grup III · Contour plot</p>
+    <h2>El relleu de Maunga Whau</h2>
+    <p class="question">Com podem representar les altituds i els canvis de pendent d’un terreny en un pla?</p>
+    <p>El gràfic utilitza una matriu de 87 × 61 altituds sobre una quadrícula amb punts separats 10 m. Les corbes uneixen punts amb la mateixa altitud, en intervals de 10 m. Els eixos conserven la mateixa proporció espacial.</p>
+    <a class="direct" href="contorns.html" target="_blank" rel="noopener">Obrir el gràfic de contorns en una pàgina pròpia</a>
+    <iframe class="contours" src="contorns.html" title="Corbes de nivell del volcà Maunga Whau" loading="lazy"></iframe>
+    <p><strong>Objectiu i audiència:</strong> explicar a estudiants i públic sense formació cartogràfica com es llegeix una superfície mitjançant corbes de nivell. Amb intervals constants, les corbes més juntes indiquen un canvi d’altura més ràpid.</p>
+    <p class="source">Font: <a href="https://stat.ethz.ch/R-manual/R-patched/RHOME/library/datasets/html/volcano.html" target="_blank" rel="noopener">conjunt volcano de R, digitalitzat per Ross Ihaka</a>. <a href="https://vincentarelbundock.github.io/Rdatasets/datasets.html" target="_blank" rel="noopener">CSV consultat a Rdatasets</a>. La font adverteix que les dades no s’han de considerar precises. S’utilitzen amb finalitat docent. Les coordenades són locals a la matriu i no estableixen una orientació nord.</p>
+  </section>
+
+  <footer>
+    <p>Passa el cursor pels gràfics per consultar valors. Els enllaços de cada apartat permeten obrir la visualització de manera independent.</p>
+    <p>Els HTML contenen una selecció fixa de les dades i no s’actualitzen automàticament.</p>
+  </footer>
+</main>
+</body>
+</html>
